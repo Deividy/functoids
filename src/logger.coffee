@@ -1,8 +1,9 @@
 util = require('util')
 _ = require('underscore')
+moment = require('moment')
 
 timestamp = () ->
-    t = (new Date()).toUTCString()
+    t = moment().format()
     return "[#{t}] - "
 
 ensureString = (message) ->

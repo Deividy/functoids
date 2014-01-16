@@ -1,10 +1,9 @@
 util = require('util')
 _ = require('underscore')
-moment = require('moment')
 
 timestamp = () ->
-    t = moment().format()
-    return "[#{t}] - "
+    d = (new Date()).toISOString()
+    return "[#{d}] - "
 
 ensureString = (message) ->
     return if _.isString(message) then message else util.inspect(message)

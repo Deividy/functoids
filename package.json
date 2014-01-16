@@ -5,8 +5,7 @@
   "private": false,
   "dependencies": {
     "underscore": "",
-    "coffee-script": "",
-    "moment": "~2.5.0"
+    "coffee-script": ""
   },
   "devDependencies": {
     "mocha": "",

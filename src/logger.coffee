@@ -2,8 +2,8 @@ util = require('util')
 _ = require('underscore')
 
 timestamp = () ->
-    t = (new Date()).toUTCString()
-    return "[#{t}] - "
+    d = (new Date()).toISOString()
+    return "[#{d}] - "
 
 ensureString = (message) ->
     return if _.isString(message) then message else util.inspect(message)

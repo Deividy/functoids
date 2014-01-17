@@ -97,3 +97,7 @@ describe 'String helper', ->
         F.padLeft(189, 2, 0).should.eql('189')
         F.padLeft(189, 3, 0).should.eql('189')
         F.padLeft(189, 4, 0).should.eql('0189')
+
+    it 'ends with suffix', ->
+        F.endsWith('hello.coffee', 'c').should.be.false
+        F.endsWith('hello.coffee', 'ee').should.be.true

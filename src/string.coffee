@@ -83,6 +83,13 @@ self = {
         s = s.toString()
         return s if s.length >= length
         return self.repeat(pad, length - s.length) + s
+
+    # Thanks to Chakrit Wichian
+    # http://stackoverflow.com/questions/280634/endswith-in-javascript
+    endsWith: (str, suffix) ->
+        F.demandGoodString(str, 'str')
+        F.demandGoodString(suffix, 'suffix')
+        return str.indexOf(suffix, str.length - suffix.length) != -1
 }
 
 i = require('./inflector')

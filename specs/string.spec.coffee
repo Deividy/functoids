@@ -7,7 +7,7 @@ F = h.requireSrc()
 # http://en.wikipedia.org/wiki/Octopus#Etymology_and_pluralization
 # http://en.wikipedia.org/wiki/Virus#Etymology
 
-describe 'String helper', ->
+describe('String helper', ->
     it('separates words into underscores, taking acronyms into account', ->
         F.underscore('OldMcDonald').should.eql('old_mc_donald')
         F.inflector.acronym('McDonald')
@@ -80,12 +80,13 @@ describe 'String helper', ->
         F.toCamelCase('anderson_silva_by_TKO', false).should.eql('andersonSilvaByTKO')
     )
 
-    it 'generates a string by repeating a character or string', ->
+    it('generates a string by repeating a character or string', ->
         F.repeat('A', 10).should.eql('AAAAAAAAAA')
         F.repeat('0', 5).should.eql('00000')
         F.repeat('baz', 3).should.eql('bazbazbaz')
+    )
 
-    it 'left pads strings', ->
+    it('left pads strings', ->
         F.padLeft(3, 2, 0).should.eql('03')
         F.padLeft(3, 6, 0).should.eql('000003')
         F.padLeft(189, 6, 0).should.eql('000189')
@@ -97,7 +98,10 @@ describe 'String helper', ->
         F.padLeft(189, 2, 0).should.eql('189')
         F.padLeft(189, 3, 0).should.eql('189')
         F.padLeft(189, 4, 0).should.eql('0189')
+    )
 
-    it 'ends with suffix', ->
+    it('ends with suffix', ->
         F.endsWith('hello.coffee', 'c').should.be.false
         F.endsWith('hello.coffee', 'ee').should.be.true
+    )
+)

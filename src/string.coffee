@@ -99,7 +99,6 @@ self = {
         F.demandString(a, 'a')
         F.demandString(b, 'b')
 
-        # insensitive a, b strings
         a = a.toLowerCase().trim()
         b = b.toLowerCase().trim()
 

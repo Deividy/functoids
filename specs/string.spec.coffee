@@ -112,9 +112,17 @@ describe('String helper', ->
         F.alike('    ', null).should.be.true
         F.alike('  1  ', '  1 ').should.be.true
         F.alike(undefined, null).should.be.true
+        F.alike(undefined, '    ').should.be.true
+        F.alike(' a $ # b B $ !? {}   ', 'A $ # B b $ !? {}').should.be.true
 
         (() -> F.alike('1', 1)).should.throw(/must be a string/)
+        (() -> F.alike(1, '1')).should.throw(/must be a string/)
+        (() -> F.alike(1, 1)).should.throw(/must be a string/)
+
         F.alike('1', '2').should.be.false
+        F.alike('No Diff', 'No  Diff').should.be.false
         F.alike('Dif', 'Diff').should.be.false
+        F.alike(undefined, 'null').should.be.false
+        F.alike(undefined, '0').should.be.false
     )
 )

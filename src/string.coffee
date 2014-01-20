@@ -100,11 +100,12 @@ self = {
         F.demandString(b, 'b')
 
         # insensitive a, b strings
-        for str in [ a, b ]
-            str = str.toLowerCase().trim()
+        a = a.toLowerCase().trim()
+        b = b.toLowerCase().trim()
 
         return true if (a == b)
         return false
+}
 
 i = require('./inflector')
 module.exports = self

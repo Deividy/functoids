@@ -45,7 +45,7 @@ describe('String helper', ->
         F.toLowerInitial('Baba Oreilly').should.eql('baba Oreilly')
     )
 
-    it 'undelimits strings', () ->
+    it('undelimits strings', () ->
         F.undelimit("'foobar'").should.eql("foobar")
         F.undelimit("(foobar)").should.eql("foobar")
         F.undelimit("{foobar}").should.eql("foobar")
@@ -58,6 +58,7 @@ describe('String helper', ->
 
         F.undelimit('{foobar}', '""', '()').should.eql("{foobar}")
         F.undelimit('(foobar)', '{}', '()').should.eql("foobar")
+    )
 
     it('makes strings into camel case', () ->
         F.toCamelCase('some_underscore_string').should.eql('SomeUnderscoreString')

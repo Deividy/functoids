@@ -106,7 +106,7 @@ describe('String helper', ->
         F.endsWith('hello.coffee', 'ee').should.be.true
     )
 
-    it('alike()', () ->
+    it('alike strings', () ->
         F.alike('Test', 'TEST').should.be.true
         F.alike('      Test MeE    ', 'TEST mee').should.be.true
         F.alike('    ', null).should.be.true

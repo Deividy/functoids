@@ -90,7 +90,21 @@ self = {
         F.demandGoodString(str, 'str')
         F.demandGoodString(suffix, 'suffix')
         return str.indexOf(suffix, str.length - suffix.length) != -1
-}
+
+
+    alike: (a, b) ->
+        a ?= ''
+        b ?= ''
+
+        F.demandString(a, 'a')
+        F.demandString(b, 'b')
+
+        # insensitive a, b strings
+        for str in [ a, b ]
+            str = str.toLowerCase().trim()
+
+        return true if (a == b)
+        return false
 
 i = require('./inflector')
 module.exports = self

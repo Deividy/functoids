@@ -91,7 +91,6 @@ self = {
         F.demandGoodString(suffix, 'suffix')
         return str.indexOf(suffix, str.length - suffix.length) != -1
 
-
     alike: (a, b) ->
         a ?= ''
         b ?= ''
@@ -102,8 +101,7 @@ self = {
         a = a.toLowerCase().trim()
         b = b.toLowerCase().trim()
 
-        return true if (a == b)
-        return false
+        return a == b
 }
 
 i = require('./inflector')

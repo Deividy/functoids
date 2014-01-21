@@ -7,8 +7,8 @@ F = h.requireSrc()
 # http://en.wikipedia.org/wiki/Octopus#Etymology_and_pluralization
 # http://en.wikipedia.org/wiki/Virus#Etymology
 
-describe 'String helper', ->
-    it('separates words into underscores, taking acronyms into account', ->
+describe('String helper', ->
+    it('separates words into underscores, taking acronyms into account', () ->
         F.underscore('OldMcDonald').should.eql('old_mc_donald')
         F.inflector.acronym('McDonald')
         F.underscore('OldMcDonald').should.eql('old_mcdonald')
@@ -45,7 +45,7 @@ describe 'String helper', ->
         F.toLowerInitial('Baba Oreilly').should.eql('baba Oreilly')
     )
 
-    it 'undelimits strings', ->
+    it('undelimits strings', () ->
         F.undelimit("'foobar'").should.eql("foobar")
         F.undelimit("(foobar)").should.eql("foobar")
         F.undelimit("{foobar}").should.eql("foobar")
@@ -58,6 +58,7 @@ describe 'String helper', ->
 
         F.undelimit('{foobar}', '""', '()').should.eql("{foobar}")
         F.undelimit('(foobar)', '{}', '()').should.eql("foobar")
+    )
 
     it('makes strings into camel case', () ->
         F.toCamelCase('some_underscore_string').should.eql('SomeUnderscoreString')
@@ -80,12 +81,13 @@ describe 'String helper', ->
         F.toCamelCase('anderson_silva_by_TKO', false).should.eql('andersonSilvaByTKO')
     )
 
-    it 'generates a string by repeating a character or string', ->
+    it('generates a string by repeating a character or string', () ->
         F.repeat('A', 10).should.eql('AAAAAAAAAA')
         F.repeat('0', 5).should.eql('00000')
         F.repeat('baz', 3).should.eql('bazbazbaz')
+    )
 
-    it 'left pads strings', ->
+    it('left pads strings', () ->
         F.padLeft(3, 2, 0).should.eql('03')
         F.padLeft(3, 6, 0).should.eql('000003')
         F.padLeft(189, 6, 0).should.eql('000189')
@@ -97,7 +99,30 @@ describe 'String helper', ->
         F.padLeft(189, 2, 0).should.eql('189')
         F.padLeft(189, 3, 0).should.eql('189')
         F.padLeft(189, 4, 0).should.eql('0189')
+    )
 
-    it 'ends with suffix', ->
+    it('ends with suffix', () ->
         F.endsWith('hello.coffee', 'c').should.be.false
         F.endsWith('hello.coffee', 'ee').should.be.true
+    )
+
+    it('alike strings', () ->
+        F.alike('Test', 'TEST').should.be.true
+        F.alike('      Test MeE    ', 'TEST mee').should.be.true
+        F.alike('    ', null).should.be.true
+        F.alike('  1  ', '  1 ').should.be.true
+        F.alike(undefined, null).should.be.true
+        F.alike(undefined, '    ').should.be.true
+        F.alike(' a $ # b B $ !? {}   ', 'A $ # B b $ !? {}').should.be.true
+
+        (() -> F.alike('1', 1)).should.throw(/must be a string/)
+        (() -> F.alike(1, '1')).should.throw(/must be a string/)
+        (() -> F.alike(1, 1)).should.throw(/must be a string/)
+
+        F.alike('1', '2').should.be.false
+        F.alike('No Diff', 'No  Diff').should.be.false
+        F.alike('Dif', 'Diff').should.be.false
+        F.alike(undefined, 'null').should.be.false
+        F.alike(undefined, '0').should.be.false
+    )
+)

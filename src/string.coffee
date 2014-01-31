@@ -91,6 +91,11 @@ self = {
         F.demandGoodString(suffix, 'suffix')
         return str.indexOf(suffix, str.length - suffix.length) != -1
 
+    startsWith: (str, prefix) ->
+        F.demandGoodString(str, 'str')
+        F.demandGoodString(prefix, 'prefix')
+        return (str?.slice(0, prefix?.length) == prefix)
+
     alike: (a, b) ->
         a ?= ''
         b ?= ''

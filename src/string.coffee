@@ -94,7 +94,7 @@ self = {
     startsWith: (str, prefix) ->
         F.demandGoodString(str, 'str')
         F.demandGoodString(prefix, 'prefix')
-        return (str?.slice(0, prefix?.length) == prefix)
+        return (str.slice(0, prefix.length) == prefix)
 
     alike: (a, b) ->
         a ?= ''

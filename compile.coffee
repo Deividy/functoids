@@ -12,7 +12,7 @@ importOrder = FShared._importOrder
 importOrder.unshift('index')
 files = ("#{src}/#{file}.coffee" for file in importOrder)
 
-console.log("Compiling: \n#{files.join('\n')} to \n#{compiledJS}")
+console.log("Compiling: \n#{files.join('\n')}\n To: \n#{compiledJS}")
 
 exec("coffee -cj #{compiledJS} #{files.join(' ')}", (err, stdout) ->
     throw new Error(err) if err?

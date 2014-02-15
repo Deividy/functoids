@@ -1,7 +1,7 @@
 #!/usr/bin/env coffee
 
 src = "#{__dirname}/src/shared"
-compiledJS = "#{__dirname}/client/functoids.js"
+compiledJS = "#{__dirname}/functoids.js"
 
 fs = require('fs')
 { exec } = require('child_process')
@@ -9,12 +9,10 @@ FShared = require(src)
 
 importOrder = FShared._importOrder
 
-files = ""
+files = ("#{src}/#{file}.coffee" for file in importOrder)
 
-files += "#{src}/#{file}.coffee " for file in importOrder
+console.log("Compiling: \n#{files.join('\n')} to \n#{compiledJS}")
 
-console.log("Compiling #{files} to #{compiledJS}")
-
-exec("coffee -cj #{compiledJS} #{files}", (err, stdout) ->
+exec("coffee -cj #{compiledJS} #{files.join(' ')}", (err, stdout) ->
     throw new Error(err) if err?
 )

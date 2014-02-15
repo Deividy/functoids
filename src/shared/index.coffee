@@ -1,9 +1,9 @@
-importOrder = [ 'validator', 'core', 'math', 'array', 'string' ]
+sharedFiles = [ 'validator', 'core', 'math', 'array', 'string' ]
 
 if typeof exports == 'undefined'
     @F = { }
 else
     _ = require('underscore')
-    _.extend(exports, require("./#{module}")) for module in importOrder
+    _.extend(exports, require("./#{module}")) for module in sharedFiles
 
-    exports._importOrder = importOrder
+    exports._sharedFiles = sharedFiles

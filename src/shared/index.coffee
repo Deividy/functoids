@@ -1,10 +1,4 @@
-importOrder = [
-    'validator'
-    'core'
-    'math'
-    'array'
-    'string'
-]
+importOrder = [ 'validator', 'core', 'math', 'array', 'string' ]
 
 if typeof exports == 'undefined'
     @F = { }

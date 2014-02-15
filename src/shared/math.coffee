@@ -1,6 +1,8 @@
-_ = require('underscore')
-
-F = require('./index')
+if (require?)
+    _ = require('underscore')
+    F = require('./index')
+else
+    { F, _ } = @
 
 self = {
     # Written by Tim Down, http://www.timdown.co.uk in this awesome answer:

@@ -1,5 +1,8 @@
-_ = require('underscore')
-F = require('./index')
+if (require?)
+    _ = require('underscore')
+    F = require('./index')
+else
+    { F, _ } = @
 
 self = {
     isOnlyElement: (a, e) -> _.isArray(a) && a.length == 1 && a[0] == e

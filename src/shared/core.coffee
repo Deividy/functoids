@@ -1,4 +1,7 @@
-_ = require('underscore')
+if (require?)
+    _ = require('underscore')
+else
+    { _ } = @
 
 self = {
     throw: () ->

@@ -7,8 +7,12 @@ Modifications Copyright(c) Gustavo Duarte
  
 ###
 
-_ = require('underscore')
-F = require('./index')
+if (require?)
+    _ = require('underscore')
+    F = require('./index')
+else
+    { F, _ } = @
+
 delimiters = ["''", '""', '{}', '[]', '()']
 
 # this is from http://stackoverflow.com/questions/822452/strip-html-from-text-javascript

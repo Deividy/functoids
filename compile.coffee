@@ -1,7 +1,7 @@
 #!/usr/bin/env coffee
 
 src = "#{__dirname}/src/shared"
-compiledJS = "#{__dirname}/functoids.js"
+compiledJS = "#{__dirname}/js/functoids-client.js"
 
 fs = require('fs')
 { exec } = require('child_process')

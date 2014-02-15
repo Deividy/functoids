@@ -14,6 +14,6 @@ files = ("#{src}/#{file}.coffee" for file in importOrder)
 
 console.log("Compiling: \n#{files.join('\n')}\n To: \n#{compiledJS}")
 
-exec("coffee -cj #{compiledJS} #{files.join(' ')}", (err, stdout) ->
+exec("coffee -cj #{compiledJS} #{files.join(' ')}", (err) ->
     throw new Error(err) if err?
 )

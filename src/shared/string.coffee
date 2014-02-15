@@ -78,4 +78,7 @@ self = {
         return a == b
 }
 
-module.exports = self
+if (module?.exports?)
+    module.exports = self
+else
+    _.extend(@F, self)

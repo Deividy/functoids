@@ -147,4 +147,7 @@ validator = {
 
 validator.demandNonEmptyObject = validator.demandGoodObject
 
-module.exports = validator
+if (module?.exports?)
+    module.exports = validator
+else
+    _.extend(@F, validator)

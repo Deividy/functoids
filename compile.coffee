@@ -1,20 +1,18 @@
 #!/usr/bin/env coffee
 
-src = "#{__dirname}/src"
-compiledJSClient = "#{__dirname}/js/functoids-client.js"
-compiledJSFull = "#{__dirname}/js/functoids-full.js"
-
 fs = require('fs')
 { exec } = require('child_process')
-FShared = require(src)
 
-sharedFiles = FShared._sharedFiles
+sharedSrc = "#{__dirname}/src/shared"
+jsClientFile = "#{__dirname}/js/functoids-client.js"
 
-sharedFiles.unshift('index')
-sharedFiles = ("#{src}/shared/#{file}.coffee" for file in sharedFiles)
+sharedFiles = [ ]
 
-console.log("Compiling client: \n#{sharedFiles.join('\n')}\n To: \n#{compiledJSClient}")
+for file in [ 'index', 'validator', 'core', 'math', 'array', 'string' ]
+    sharedFiles.push("#{sharedSrc}/#{file}.coffee")
 
-exec("coffee -cj #{compiledJSClient} #{sharedFiles.join(' ')}", (err) ->
+console.log("Compiling client: \n#{sharedFiles.join('\n')}\n To: \n#{jsClientFile}")
+
+exec("coffee -cj #{jsClientFile} #{sharedFiles.join(' ')}", (err) ->
     throw new Error(err) if err?
 )

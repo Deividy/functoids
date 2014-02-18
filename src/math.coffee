@@ -6,8 +6,7 @@ self = {
     # Written by Tim Down, http://www.timdown.co.uk in this awesome answer:
     # http://stackoverflow.com/questions/3108986/gaussian-bankers-rounding-in-javascript 
     evenRound: (num, decimalPlaces) ->
-        unless F.isGoodNumber(num)
-            F.throw("Argument num must be a valid number, but was '#{num}'")
+        F.demandGoodNumber(num, "num")
 
         d = decimalPlaces || 0
         m = Math.pow(10, d)
@@ -20,6 +19,11 @@ self = {
             r = Math.round(n)
 
         return if d then r / m else r
+
+    round: (num, decimalPlaces) ->
+        F.demandGoodNumber(num, "num")
+
+        return Number(num.toFixed(decimalPlaces))
 }
 
 module.exports = self

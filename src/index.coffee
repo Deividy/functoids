@@ -1,7 +1,8 @@
 _ = require('underscore')
+
 _.extend(
-    exports, 
-    require('./validator'), 
+    exports,
+    require('./validator'),
     require('./logger')
 )
 

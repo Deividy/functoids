@@ -135,5 +135,6 @@ describe('String helper', ->
         F.stripHtml('').should.eql('')
         F.stripHtml('foo').should.eql('foo')
         F.stripHtml('<bar>benbara<zan>').should.eql('benbara')
+        (() -> F.stripHtml(null)).should.throw()
     )
 )

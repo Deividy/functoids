@@ -61,7 +61,7 @@ self = {
         return s
 
     stripHtml: (s) ->
-        F.demandGoodString(s, "s")
+        F.demandString(s, "s")
         return s.replace(rgxStripHtml, '')
 
     toCamelCase: (s, first) ->

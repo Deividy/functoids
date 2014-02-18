@@ -130,4 +130,11 @@ describe('String helper', ->
         F.alike(undefined, 'null').should.be.false
         F.alike(undefined, '0').should.be.false
     )
+
+    it('strips html', () ->
+        F.stripHtml('').should.eql('')
+        F.stripHtml('foo').should.eql('foo')
+        F.stripHtml('<bar>benbara<zan>').should.eql('benbara')
+        (() -> F.stripHtml(null)).should.throw()
+    )
 )

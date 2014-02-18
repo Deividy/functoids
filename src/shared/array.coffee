@@ -15,6 +15,18 @@ self = {
 
     popIfNull: (a) -> a.pop() if _.isArray(a) && a[a.length - 1] == null
 
+    pluckMany: (arr, keys...) ->
+        F.demandArray(arr, "arr")
+        F.demandArrayOfGoodStrings(keys, "keys")
+
+        results = []
+        for item in arr
+            for k in keys
+                if k of item
+                    results.push(F.result(item, k))
+
+        return results
+
     toDictionary: (a, key) ->
         F.demandArray(a, a)
         F.demandGoodString(key, "key")

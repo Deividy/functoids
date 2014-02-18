@@ -38,10 +38,6 @@ self = {
         .replace(/([a-z\d])([A-Z])/g,'$1_$2')
         .toLowerCase()
 
-    ###
-     * @method spacify()
-     * @short Converts camel case, underscores, and hyphens to a properly spaced string.
-    ###
     spacify: (s) -> self.underscore(s).replace(/_/g, ' ')
 
     toCamelCase: (s, first) ->

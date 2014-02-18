@@ -40,8 +40,9 @@ self = {
                 return s.slice(1, s.length-1)
         return s
 
+
     stripHtml: (s) ->
-        F.demandGoodString(s, "s")
+        F.demandString(s, "s")
         return s.replace(rgxStripHtml, '')
 
     # Thanks to Jason Orendorff

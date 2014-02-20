@@ -4,7 +4,7 @@ fs = require('fs')
 { exec } = require('child_process')
 
 sharedSrc = "#{__dirname}/src/shared"
-jsClientFile = "#{__dirname}/js/functoids-client.js"
+jsClientFile = "#{__dirname}/functoids-client.js"
 
 sharedFiles = [ ]
 

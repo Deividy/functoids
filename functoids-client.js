@@ -266,9 +266,7 @@
   self = {
     evenRound: function(num, decimalPlaces) {
       var d, f, i, m, n, r;
-      if (!F.isGoodNumber(num)) {
-        F["throw"]("Argument num must be a valid number, but was '" + num + "'");
-      }
+      F.demandGoodNumber(num, "num");
       d = decimalPlaces || 0;
       m = Math.pow(10, d);
       n = +(d ? num * m : num).toFixed(8);
@@ -284,6 +282,10 @@
       } else {
         return r;
       }
+    },
+    round: function(num, decimalPlaces) {
+      F.demandGoodNumber(num, "num");
+      return Number(num.toFixed(decimalPlaces));
     }
   };
 
@@ -330,6 +332,23 @@
       if (_.isArray(a) && a[a.length - 1] === null) {
         return a.pop();
       }
+    },
+    pluckMany: function() {
+      var arr, item, k, keys, results, _i, _j, _len, _len1;
+      arr = arguments[0], keys = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
+      F.demandArray(arr, "arr");
+      F.demandArrayOfGoodStrings(keys, "keys");
+      results = [];
+      for (_i = 0, _len = arr.length; _i < _len; _i++) {
+        item = arr[_i];
+        for (_j = 0, _len1 = keys.length; _j < _len1; _j++) {
+          k = keys[_j];
+          if (k in item) {
+            results.push(F.result(item, k));
+          }
+        }
+      }
+      return results;
     },
     toDictionary: function(a, key) {
       var e, i, o, v, _i, _len;
@@ -459,7 +478,7 @@
       return s;
     },
     stripHtml: function(s) {
-      F.demandGoodString(s, "s");
+      F.demandString(s, "s");
       return s.replace(rgxStripHtml, '');
     },
     repeat: function(str, n) {

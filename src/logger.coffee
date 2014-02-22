@@ -15,8 +15,16 @@ timestamp = () ->
 ensureString = (message) ->
     return if _.isString(message) then message else inspect(message)
 
-isTTYout = Boolean(process.stdout.isTTY)
-isTTYerr = Boolean(process.stderr.isTTY)
+stdout = () ->
+	return process.stdout.write.apply(@, arguments) if process?.stdout?
+	console.log.apply(@, arguments)
+
+stderr = () ->
+	return process.stderr.write.apply(@, arguments) if process?.stderr?
+	console.error.apply(@, arguments)
+
+isTTYout = Boolean(stdout.isTTY)
+isTTYerr = Boolean(stderr.isTTY)
 
 LABEL_INFO = if (isTTYout) then "\x1b[36m[info]\x1b[0m" else ''
 LABEL_ERROR = if (isTTYerr) then "\x1b[31m[error]\x1b[0m" else ''
@@ -27,8 +35,8 @@ self = {
         message =  ensureString(message)
         message = LABEL_INFO + timestamp() + message
 
-        process.stdout.write("#{message}\n")
-        process.stderr.write("#{message}\n")
+        stdout("#{message}\n")
+        stderr("#{message}\n")
 
 
     logInfo: (info, context) ->
@@ -41,7 +49,7 @@ self = {
 
         params.push('')
 
-        process.stdout.write(params.join('\n'))
+        stdout(params.join('\n'))
 
 
     logError: (error, context) ->
@@ -62,7 +70,7 @@ self = {
 
         params.push('')
 
-        process.stderr.write(params.join('\n'))
+        stderr(params.join('\n'))
 
 }
 

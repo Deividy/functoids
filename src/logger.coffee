@@ -1,12 +1,19 @@
-util = require('util')
-_ = require('underscore')
+if (require?)
+    util = require('util')
+    _ = require('underscore')
+else
+    { _ } = @
+
+inspect = (obj) ->
+    return util.inspect(obj) if (util?.inspect?)
+    return obj
 
 timestamp = () ->
     d = (new Date()).toISOString()
     return "[#{d}] - "
 
 ensureString = (message) ->
-    return if _.isString(message) then message else util.inspect(message)
+    return if _.isString(message) then message else inspect(message)
 
 isTTYout = Boolean(process.stdout.isTTY)
 isTTYerr = Boolean(process.stderr.isTTY)
@@ -14,7 +21,7 @@ isTTYerr = Boolean(process.stderr.isTTY)
 LABEL_INFO = if (isTTYout) then "\x1b[36m[info]\x1b[0m" else ''
 LABEL_ERROR = if (isTTYerr) then "\x1b[31m[error]\x1b[0m" else ''
 
-logger = {
+self = {
 
     logAll: (message) ->
         message =  ensureString(message)
@@ -30,7 +37,7 @@ logger = {
         ]
         
         if context?
-            params.push(util.inspect(context))
+            params.push(inspect(context))
 
         params.push('')
 
@@ -51,7 +58,7 @@ logger = {
         params = [message, stack]
 
         if context?
-            params.push(util.inspect(context))
+            params.push(inspect(context))
 
         params.push('')
 
@@ -60,4 +67,7 @@ logger = {
 }
 
 
-module.exports = logger
+if (module?.exports?)
+    module.exports = self
+else
+    _.extend(@F, self)

@@ -14,8 +14,17 @@ http:en.wikipedia.org/wiki/Virus#Etymology
  
 */
 
-var _ = require('underscore'),
+var root = this;
+
+var _, F = { };
+
+if (require) {
+	_ = require('underscore');
     F = require('./');
+} else {
+	if (root.F) F = root.F;
+	_ = root._;
+}
 
 function multiArgs(args, fn) {
     var result = [], i;
@@ -339,4 +348,8 @@ function iterateOverObject(obj, fn) {
 inflector.inflect = inflect
 inflector.acronyms = acronyms
 
-module.exports = inflector 
+if (module && module.exports) {
+	module.exports = inflector 
+} else {
+	F.inflector = inflector;
+}

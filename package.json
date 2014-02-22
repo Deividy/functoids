@@ -9,6 +9,7 @@
   },
   "devDependencies": {
     "mocha": "",
-    "should": ""
+    "should": "",
+    "js2coffee": "~0.2.7"
   }
 }

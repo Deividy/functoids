@@ -1,7 +1,10 @@
-_ = require('underscore')
-F = require('./index')
-root = @
-
+if (require?)
+    _ = require('underscore')
+    F = require('./index')
+    i = require('../inflector')
+else
+    { F, _ } = @
+    i = F.inflector
 
 self = {
     throw: () ->
@@ -19,4 +22,8 @@ self = {
         if _.isFunction(arg1) then arg1() else arg1
 }
 
-module.exports = self
+
+if (module?.exports?)
+    module.exports = self
+else
+    _.extend(@F, self)

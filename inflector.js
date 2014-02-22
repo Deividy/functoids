@@ -18,7 +18,7 @@ var root = this;
 
 var _, F = { };
 
-if (require) {
+if (typeof require !== 'undefined') {
 	_ = require('underscore');
     F = require('./');
 } else {
@@ -348,7 +348,7 @@ function iterateOverObject(obj, fn) {
 inflector.inflect = inflect
 inflector.acronyms = acronyms
 
-if (module && module.exports) {
+if (typeof module !== 'undefined' && module.exports) {
 	module.exports = inflector 
 } else {
 	F.inflector = inflector;

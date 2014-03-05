@@ -1,3 +1,10 @@
+var files = [ ]
+var fileNames = [ 'index', 'validator', 'core', 'math', 'array', 'string', 'logger' ]
+
+for (var i = 0; i < fileNames.length; i++) {
+    files.push(__dirname + "/src/" + fileNames[i] + ".coffee")
+}
+
 module.exports = function (grunt) {
     grunt.initConfig({
         coffee: {
@@ -6,7 +13,7 @@ module.exports = function (grunt) {
                     join: true
                 },
                 files: {
-                    'functoids.js': [ 'src/*.coffee' ]
+                    'functoids.js': files
                 }
             }
         },

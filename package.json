@@ -9,6 +9,12 @@
   },
   "devDependencies": {
     "mocha": "",
-    "should": ""
+    "should": "",
+    "grunt": "~0.4.2",
+    "grunt-contrib-uglify": "^0.3.3",
+    "grunt-contrib-coffee": "^0.10.1"
+  },
+  "scripts": {
+    "test": "cd specs && ./run.sh"
   }
 }
